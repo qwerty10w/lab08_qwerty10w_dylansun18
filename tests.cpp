@@ -7,5 +7,6 @@ int main(){
 	assertEquals(true, isPalindrome("racecar"),"hi");
 	assertEquals(false, isPalindrome("raceca"),"raceca");
 	assertEquals(true, isPalindrome("a"),"a");
+	assertEquals(true, isAnagram("aaat","TAAA"),"aaat, TAAA");
 }
 

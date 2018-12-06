@@ -25,6 +25,8 @@ bool isAnagram(string s1, string s2){
   s1.erase(remove_if(s1.begin(), s1.end(), ::isspace), s1.end());
   s2.erase(remove_if(s2.begin(), s2.end(), ::ispunct), s2.end());
   s2.erase(remove_if(s2.begin(), s2.end(), ::isspace), s2.end());
+  transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
+  transform(s2.begin(), s2.end(), s2.begin(), ::toupper);
 
   if(s1.find(s2.substr(0,1))>-1){
 	  return isAnagram(s1, s2.substr(1));
