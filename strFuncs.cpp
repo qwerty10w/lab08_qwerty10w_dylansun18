@@ -11,25 +11,24 @@ using namespace std;
  * affect your result. 
  */
 bool isAnagram(string s1, string s2){
-  if(s1.length() == 0 && s2.length() >= 1){
-	  return false;
-  }
-  if(s2.length() == 0 && s1.length() >= 1){
-	  return false;
-  }
-  if(s2.length() == 0 && s2.length() == 0){
-	  return true;
-  }
-
   s1.erase(remove_if(s1.begin(), s1.end(), ::ispunct), s1.end());
   s1.erase(remove_if(s1.begin(), s1.end(), ::isspace), s1.end());
   s2.erase(remove_if(s2.begin(), s2.end(), ::ispunct), s2.end());
   s2.erase(remove_if(s2.begin(), s2.end(), ::isspace), s2.end());
   transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
-  transform(s2.begin(), s2.end(), s2.begin(), ::toupper);
+  transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
+  if(!(s1.length() == s2.length())){
+	  return false;
+  }
+  for(int i = 0; i < s1.length(); i++){
+	string s1f = s1.substr(i,1);
+	if(s2.find(s1f) != string::npos){
+		s2.erase(s2.find(s1f), 1);
+	}
 
-  if(s1.find(s2.substr(0,1))>-1){
-	  return isAnagram(s1, s2.substr(1));
+  }
+  if(s2.length() == 0){
+	  return true;
   }
   else{
 	  return false;
@@ -40,11 +39,13 @@ bool isAnagram(string s1, string s2){
  * Postcondition: Returns true if s1 is a palindrome, false otherwise
  *You should provide a recursive solution*/
 bool isPalindrome(const string s1){
-  if(s1.length() == 1){
+  string s2 = s1;
+  transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
+  if(s2.length() == 1){
 	  return true;
   }
-  if(s1.substr(0,1) == s1.substr(s1.length()-1,1)){
-	  return isPalindrome(s1.substr(1,s1.length()-2));
+  if(s2.substr(0,1) == s2.substr(s2.length()-1,1)){
+	  return isPalindrome(s2.substr(1,s2.length()-2));
   }
   else{
 	  return false;
