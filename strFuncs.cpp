@@ -41,7 +41,7 @@ bool isAnagram(string s1, string s2){
 bool isPalindrome(const string s1){
   string s2 = s1;
   transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
-  if(s2.length() == 1){
+  if(s2.length() < 2){
 	  return true;
   }
   if(s2.substr(0,1) == s2.substr(s2.length()-1,1)){
